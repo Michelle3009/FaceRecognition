@@ -14,7 +14,7 @@ namespace FaceRecognition
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Console.WriteLine("hello")
+            Console.WriteLine("hello");
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
