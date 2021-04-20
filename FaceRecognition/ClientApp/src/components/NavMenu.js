@@ -1,4 +1,5 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import { useHistory } from "react-router-dom";
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,18 +13,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Drawer from '@material-ui/core/Drawer';
-
+import { withRouter } from 'react-router-dom';
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
   constructor (props) {
     super(props);
-
+     let history = useHistory();
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
         collapsed: true, 
         leftBar: false
-
     };
   }
 
@@ -96,6 +96,11 @@ export class LeftBar extends Component {
         this.changeState(open);
 
     };
+    goTo(page) {
+        history = useHistory();
+        console.log(page)
+        history.push("/home");
+    }
     list(anchor) {
         
         return (
@@ -104,8 +109,8 @@ export class LeftBar extends Component {
                 onClick={this.toggleDrawer(false)}
                 onKeyDown={this.toggleDrawer(false)}>
                 <List>
-                    {['Miembros', 'Parentesco', 'Registro de personas', 'Cerrar sesión'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {['Miembros', 'Categoria','Registro de personas', 'Cerrar sesión'].map((text, index) => (
+                        <ListItem button key={text} onClick={() => this.goTo(text)}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
