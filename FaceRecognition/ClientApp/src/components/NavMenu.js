@@ -14,12 +14,14 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Drawer from '@material-ui/core/Drawer';
 import { withRouter } from 'react-router-dom';
+import { SidebarData } from '../components/SidebarData'
+
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
   constructor (props) {
     super(props);
-     let history = useHistory();
+     //let history = useHistory();
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
         collapsed: true, 
@@ -52,12 +54,12 @@ export class NavMenu extends Component {
           <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
               <Container>
-                 <NavbarBrand className="navBarBrand" tag={Link} to="/">
+                          <NavbarBrand className="navBarBrand" tag={Link} to="#">
                         <Button color="link" size="lg" onClick={() => this.openLeftBar()}><FontAwesomeIcon icon={faBars} /></Button>Administrador monitoreo </NavbarBrand>
                 <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                 <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                   <ul className="navbar-nav flex-grow">
-                    <NavItem> <NavLink tag={Link} className="text-dark" to="/">Cuenta</NavLink> </NavItem>
+                                  <NavItem> <NavLink tag={Link} className="text-dark" to="#">Cuenta</NavLink> </NavItem>
                   </ul>
                 </Collapse>
               </Container>
@@ -96,23 +98,50 @@ export class LeftBar extends Component {
         this.changeState(open);
 
     };
-    goTo(page) {
+    /*goTo(page) {
         history = useHistory();
         console.log(page)
         history.push("/home");
-    }
+
+  <List>
+                    {['Miembros', 'Categoria','Registro de personas', 'Cerrar sesión'].map((text, index) => (
+                        <ListItem button key={text} >
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+
+
+
+ {SidebarData.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+
+                                </Link>
+
+                            </li>
+                    )}
+                    )}
+    }*/
     list(anchor) {
         
         return (
-            <div
+            <div className="bar"
                 role="presentation"
                 onClick={this.toggleDrawer(false)}
                 onKeyDown={this.toggleDrawer(false)}>
-                <List>
-                    {['Miembros', 'Categoria','Registro de personas', 'Cerrar sesión'].map((text, index) => (
-                        <ListItem button key={text} onClick={() => this.goTo(text)}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                <List className="items">
+                    {SidebarData.map((item, index) => (
+                        <ListItem button key={index} className={item.cName} >
+                            <Link to={item.path}>
+                                {item.icon}
+                                <span className="icon">{item.title}</span>
+
+                            </Link>
                         </ListItem>
                     ))}
                 </List>
