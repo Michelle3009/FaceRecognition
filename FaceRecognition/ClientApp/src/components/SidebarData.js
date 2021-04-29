@@ -7,7 +7,7 @@ import * as IoIcons from 'react-icons/io'
 export const SidebarData = [
     {
         title: 'Home',
-        path: ' /',
+        path: '/',
         icon: <AiIcons.AiFillHome />,
         cName: 'nav-text'
 
@@ -41,8 +41,15 @@ export const SidebarData = [
 
     },
     {
+        title: 'Login',
+        path: '/login',
+        icon: <FaIcons.FaUser />,
+        cName: 'nav-text'
+
+    },
+    {
         title: 'Cerrar sesión',
-        path: ' /',
+        path: '/cerrar',
         icon: <IoIcons.IoIosExit />,
         cName: 'nav-text'
 
