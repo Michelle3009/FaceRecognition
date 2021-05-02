@@ -1,0 +1,32 @@
+﻿.card {
+    width: 28rem;
+
+}
+.card1{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input {
+    display: flex;
+    margin-right: 5rem;
+    margin-left:5rem;
+}
+.label {
+    display: flex;
+    margin-left: 5rem;
+}
+.buttons {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.but{
+    margin:10px;
+}
