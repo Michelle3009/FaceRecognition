@@ -5,14 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import './NavMenu.css';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+//import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Drawer from '@material-ui/core/Drawer';
-import { withRouter } from 'react-router-dom';
 import { SidebarData } from '../components/SidebarData'
 
 export class NavMenu extends Component {
@@ -97,35 +92,6 @@ export class LeftBar extends Component {
         this.changeState(open);
 
     };
-    /*goTo(page) {
-        history = useHistory();
-        console.log(page)
-        history.push("/home");
-
-  <List>
-                    {['Miembros', 'Categoria','Registro de personas', 'Cerrar sesión'].map((text, index) => (
-                        <ListItem button key={text} >
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-
-
-
- {SidebarData.map((item, index) => {
-                        return (
-                            <li key={index} className={item.cName}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-
-                                </Link>
-
-                            </li>
-                    )}
-                    )}
-    }*/
     list(anchor) {
         
         return (
@@ -144,7 +110,7 @@ export class LeftBar extends Component {
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                {/*<Divider />*/}
             </div>)
     }
     render() {
