@@ -35,7 +35,7 @@ export const SidebarData = [
     },
     {
         title: 'WebCam',
-        path: '/webcam',
+        path: '/webCam',
         icon: <FaIcons.FaCamera />,
         cName: 'nav-text'
 

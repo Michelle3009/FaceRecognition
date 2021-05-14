@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import 'firebase/storage'
 import 'firebase/firestore';
 import 'firebase/auth';
+
 var firebaseConfig = {
     apiKey: "AIzaSyA2VacjLpXxzT0hrBzojL5LvLUGyWGSWYI",
     authDomain: "face-recognition-cffc0.firebaseapp.com",
