@@ -1,6 +1,5 @@
 ﻿import firebase from "./conf";
 
-
 var idDoc = "";
 export function uploadImage(filePath, type) {
        
