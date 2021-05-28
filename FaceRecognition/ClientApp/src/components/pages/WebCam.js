@@ -53,9 +53,9 @@ export default class Camera extends Component {
 
 
         return (
-            <div>
-                <img src="http://192.168.100.4:8080/video" width="600px" height="600px" />
-                 <input type="submit" value="Probar" />
+            <div style={{ width: '100%', height: '90%', display: 'flex', alignItems: 'center' }}>
+                <img style={{ margin: 'auto', background: 'hsl(0, 0%, 25%)', WebkitUserSelect: 'none', height: "80%", width: "50%" }} src={"https://192.168.100.4:8080/video"}  />
+                {/*<input type="submit" value="Probar" />*/}
             </div>
         );
     }
