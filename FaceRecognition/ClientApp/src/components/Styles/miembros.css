@@ -1,0 +1,82 @@
+﻿.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.mb-3 {
+    margin-bottom: 0 !important;
+
+}
+.title {
+    margin: 5px;
+}
+.containerMiembros {
+    elevation: 2;
+    width: 400px;
+    height: 100%;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+}
+label {
+    font-size: 22px;
+    color: white;
+}
+.divMiembros {
+    display: flex;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    flex-direction: row;
+    scroll-behavior: auto;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+}
+.divMiembros:hover {
+    background-color: #F0F0F0;
+}
+.clickMiembros {
+    background-color: #F0F0F0;
+}
+html {
+    width: 100%;
+}
+body {
+    width: 100%
+}
+.containerImage {
+    display: flex;
+    flex-wrap: wrap;
+}
+.miembro {
+    display: flex;
+    flex-direction: column;
+}
+    .nombre{
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: medium;
+
+    }
+    .parentesco {
+        color: gray;
+        font-size: small;
+    }
+.headerDiv {
+    background-color: dodgerblue;
+    display: flex;
+    justify-content:center;
+    border-radius:10px;
+}
+.containerInfo {
+    width: calc(100% - 400px)
+}
+.containerDivMiembros {
+    display: flex;
+    flex-direction: row;
+}
+.containerData {
+    margin: 30px;
+    background-color: red;
+
+}

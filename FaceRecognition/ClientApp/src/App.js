@@ -40,9 +40,7 @@ import Historial from './components/Historial/Historial'
 import Home from '../src/components/pages/Home'
 import Categoria from '../src/components/pages/Categoria'
 import Miembros from '../src/components/pages/Miembros'
-import WebCam from '../src/components/pages/WebCam'
-import Login from '../src/components/pages/Login'
-import Registro from '../src/components/pages/Registro'
+import Camera from '../src/components/pages/WebCam'
 import './custom.css'
 
 export default class App extends Component {
@@ -55,13 +53,11 @@ export default class App extends Component {
                    
                 <Switch>
                     
-                    <Route path='/' exact component={Home} />
+                        <Route path='/' exact component={Home} />
                         <Route path='/categoria' component={Categoria} />
                         <Route path='/miembros' component={Miembros} />
                         <Route path='/historial' component={Historial} />
-                        <Route path='/webcam' component={WebCam} />
-                    <Route path='/login' component={Login} />
-                    <Route path='/registro' component={Registro} />
+                        <Route path='/webCam' component={Camera} />
                     
                     </Switch>
                

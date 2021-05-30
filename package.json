@@ -5,11 +5,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "bootstrap": "^5.0.0",
+    "firebase": "^8.5.0",
+    "ip-cam-control": "0.0.5",
     "react-bootstrap": "^1.5.2",
+    "react-endpoint": "^2.0.1",
     "react-fontawesome": "^1.7.1",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
-    "react-webcam": "^5.2.3"
+    "react-webcam": "^5.2.3",
+    "webcam-easy": "^1.0.5"
   }
 }
