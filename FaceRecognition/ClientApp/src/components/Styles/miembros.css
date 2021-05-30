@@ -8,7 +8,7 @@
 
 }
 .title {
-    margin: 5px;
+    margin: 5px !important;
 }
 .containerMiembros {
     elevation: 2;
@@ -21,6 +21,7 @@
 label {
     font-size: 22px;
     color: white;
+    margin: 0 !important;
 }
 .divMiembros {
     display: flex;
@@ -45,6 +46,7 @@ body {
     width: 100%
 }
 .containerImage {
+    margin-left: 25px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -63,9 +65,10 @@ body {
         font-size: small;
     }
 .headerDiv {
+    position:relative;
     background-color: dodgerblue;
     display: flex;
-    justify-content:center;
+    align-items: center;
     border-radius:10px;
 }
 .containerInfo {
@@ -76,7 +79,24 @@ body {
     flex-direction: row;
 }
 .containerData {
-    margin: 30px;
-    background-color: red;
 
+    
+}
+.containerDataName {
+    border-bottom-width: 1px;
+    border-color: lightgray;
+    border-bottom-style: solid;
+    font-weight: bold;
+    margin: 30px;
+}
+.create {
+    background: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    font-size: 17px;
+    right: 10px;
 }
