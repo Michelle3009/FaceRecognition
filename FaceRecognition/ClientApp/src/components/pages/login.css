@@ -6,6 +6,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    margin-top:150px;
 }
 .h1 {
     display: flex;
@@ -29,4 +30,11 @@
 }
 .but{
     margin:10px;
+}
+.loginb {
+    background-color: #5FA4B5;
+}
+.registrob {
+    background-color: #5FA4B5;
+    color:#ffffff;
 }

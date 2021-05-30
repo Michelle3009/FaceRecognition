@@ -41,6 +41,8 @@ import Home from '../src/components/pages/Home'
 import Categoria from '../src/components/pages/Categoria'
 import Miembros from '../src/components/pages/Miembros'
 import Camera from '../src/components/pages/WebCam'
+import Registro from '../src/components/pages/Registro'
+import Login from '../src/components/pages/Login'
 import './custom.css'
 
 export default class App extends Component {
@@ -48,21 +50,22 @@ export default class App extends Component {
 
     render() {
         return (
-            <Layout>
+        
                
                    
                 <Switch>
                     
-                        <Route path='/' exact component={Home} />
+                        <Route path='/home' exact component={Home} />
                         <Route path='/categoria' component={Categoria} />
                         <Route path='/miembros' component={Miembros} />
                         <Route path='/historial' component={Historial} />
                         <Route path='/webCam' component={Camera} />
-                    
+                    <Route path='/registro' component={Registro} />
+                    <Route path='/' exact component={Login} />
                     </Switch>
                
 
-            </Layout>
+           
         );
     }
 }

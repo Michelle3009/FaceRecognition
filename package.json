@@ -7,6 +7,7 @@
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "bootstrap": "^5.0.0",
+    "bootswatch": "^5.0.1",
     "firebase": "^8.5.0",
     "ip-cam-control": "0.0.5",
     "react-bootstrap": "^1.5.2",

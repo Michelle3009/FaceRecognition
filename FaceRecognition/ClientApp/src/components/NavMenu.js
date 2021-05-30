@@ -11,29 +11,29 @@ import Drawer from '@material-ui/core/Drawer';
 import { SidebarData } from '../components/SidebarData'
 
 export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+    static displayName = NavMenu.name;
 
-  constructor (props) {
-    super(props);
-     //let history = useHistory();
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-        collapsed: true, 
-        leftBar: false
-    };
-  }
+    constructor(props) {
+        super(props);
+        //let history = useHistory();
+        this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.state = {
+            collapsed: true,
+            leftBar: false
+        };
+    }
 
-  toggleNavbar () {
-    this.setState({
-        collapsed: !this.state.collapsed,
-        leftBar: this.state.leftBar
-    });
-  }
+    toggleNavbar() {
+        this.setState({
+            collapsed: !this.state.collapsed,
+            leftBar: this.state.leftBar
+        });
+    }
     openLeftBar = () => {
         this.setState({
             collapsed: this.state.collapsed, leftBar: true
         })
-        
+
     }
     closeLeftBar = (evt) => {
         this.setState({
@@ -41,27 +41,27 @@ export class NavMenu extends Component {
         })
     }
 
-  render () {
-      return (
-          <div>
-              {this.state.leftBar && <LeftBar stateLeft={this.closeLeftBar} />}
-          <header>
-            <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-              <Container>
-                          <NavbarBrand className="navBarBrand" tag={Link} to="#">
-                        <Button color="link" size="lg" onClick={() => this.openLeftBar()}><FontAwesomeIcon icon={faBars} /></Button>Administrador monitoreo </NavbarBrand>
-                <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                  <ul className="navbar-nav flex-grow">
-                                  <NavItem> <NavLink tag={Link} className="text-dark" to="#">Cuenta</NavLink> </NavItem>
-                  </ul>
-                </Collapse>
-              </Container>
-            </Navbar>
-            </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                {this.state.leftBar && <LeftBar stateLeft={this.closeLeftBar} />}
+                <header>
+                    <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+                        <Container>
+                            <NavbarBrand className="navBarBrand" tag={Link} to="#">
+                                <Button color="link" size="lg" onClick={() => this.openLeftBar()}><FontAwesomeIcon icon={faBars} /></Button>Administrador monitoreo </NavbarBrand>
+                            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                                <ul className="navbar-nav flex-grow">
+                                    <NavItem> <NavLink tag={Link} className="text-dark" to="#">Cuenta</NavLink> </NavItem>
+                                </ul>
+                            </Collapse>
+                        </Container>
+                    </Navbar>
+                </header>
+            </div>
+        );
+    }
 }
 
 
@@ -70,20 +70,20 @@ export class LeftBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            left:  true
+            left: true
         }
     }
-    
+
     changeState(action) {
         this.setState({ left: action })
-        
-        
+
+
     }
     sendFather = () => {
         const { stateLeft } = this.props
         stateLeft();
     }
-   
+
     toggleDrawer = (open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -93,7 +93,7 @@ export class LeftBar extends Component {
 
     };
     list(anchor) {
-        
+
         return (
             <div className="bar"
                 role="presentation"
@@ -125,4 +125,3 @@ export class LeftBar extends Component {
         );
     }
 }
-

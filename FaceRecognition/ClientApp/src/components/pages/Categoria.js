@@ -1,10 +1,12 @@
 ﻿import React from 'react'
-
+import { Layout } from '../Layout';
 function Categoria() {
     return (
         
         <div>
-            <h1>Categoria</h1>
+            <Layout>
+                <h1>Categoria</h1>
+                </Layout>
         </div>
 
     )

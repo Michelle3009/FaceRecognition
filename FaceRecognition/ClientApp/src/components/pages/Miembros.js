@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react'
 import '../Styles/miembros.css';
 import Icon from '@material-ui/core/Icon';
-
+import { Layout } from '../Layout';
 const data = [{
     id: 1, nombre: "Stephanie Segura", parentesco: "Madre", images: ["https://www.ashoka.org/sites/default/files/styles/medium_1600x1000/public/thumbnails/images/daniela-kreimer.jpg",
     "https://cdnb.20m.es/sites/112/2019/04/cara6-620x618.jpg"]
@@ -27,6 +27,8 @@ export default function Miembros() {
         }
     }
     return (
+        <>
+        <Layout>
     <div className="containerDivMiembros">
         <div className="containerMiembros">
                 <div className="headerDiv">
@@ -55,6 +57,8 @@ export default function Miembros() {
                     </div>
                 </div>
         </div>
-     </div>
+                </div>
+            </Layout>
+            </>
     )
 }

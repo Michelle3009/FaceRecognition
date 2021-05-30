@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { Card, Text, Tabs, Tab, Image } from 'react-bootstrap';
 import { Container, Row, Col} from 'reactstrap';
 import './Historial.css'
+import { Layout } from '../Layout';
 export default function Historial() {
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
 const renderCard = (card, index) => {
 
     return (
-
+        <>
+            
         <Card key={index}>
            
             
@@ -63,7 +65,8 @@ const renderCard = (card, index) => {
                     {card.texto}
                 </Card.Text>
             </Card.Body>
-        </Card>
+                </Card>
+           </>
 
     );
 };
@@ -115,8 +118,9 @@ const renderCard = (card, index) => {
 
     return (
         <>
+            <Layout>
             <ControlledTabs />
-            
+                </Layout>
 
         </>
     );

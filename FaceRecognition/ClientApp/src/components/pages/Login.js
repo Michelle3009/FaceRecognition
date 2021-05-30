@@ -34,11 +34,11 @@ function Login() {
                 </div>
                 <div className="buttons">
                     <div className="but">
-                       
-                        <Button variant="contained" color="primary" component={Link} to="/registro" >Registro</Button>{''}
+
+                        <Button variant="contained" style={{ backgroundColor: "#5FA4B5", color:"#fff" }} component={Link} to="/registro" >Registro</Button>{''}
                         
                     </div>
-                    <Button variant="contained" color="green" >Login</Button>{' '}
+                    <Button variant="contained" style={{ backgroundColor: "#75B693", color: "#fff" }}  component={Link} to="/home" >Login</Button>{' '}
                     
                     
                 </div>

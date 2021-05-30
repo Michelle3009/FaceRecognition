@@ -5,7 +5,8 @@ import { iframe } from "react-webcam";
 import Webcam from 'webcam-easy';
 /*import { uploadImage } from '../../firebase/images.service'
 import { imageEndpoint } from '../../Endpoint/images'*/
-import camControl  from 'ip-cam-control'
+import camControl from 'ip-cam-control'
+import { Layout } from '../Layout';
 export default class Camera extends Component {
     static displayName = Camera.name;
     constructor(props) {
@@ -54,8 +55,10 @@ export default class Camera extends Component {
 
         return (
             <div>
+                <Layout>
                 <img src="http://192.168.100.4:8080/video" width="600px" height="600px" />
-                 <input type="submit" value="Probar" />
+                    <input type="submit" value="Probar" />
+                </Layout>
             </div>
         );
     }
