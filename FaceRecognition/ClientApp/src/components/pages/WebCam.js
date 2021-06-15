@@ -5,7 +5,8 @@ import { iframe } from "react-webcam";
 import Webcam from 'webcam-easy';
 /*import { uploadImage } from '../../firebase/images.service'
 import { imageEndpoint } from '../../Endpoint/images'*/
-import camControl  from 'ip-cam-control'
+import camControl from 'ip-cam-control'
+import { Layout } from '../Layout';
 export default class Camera extends Component {
     static displayName = Camera.name;
     constructor(props) {
@@ -28,7 +29,7 @@ export default class Camera extends Component {
         });
     }*/
     counter() {
-        
+
         /*setInterval(() => {
             const imageSrc = this.webcamRef.current.getScreenshot();
             
@@ -42,22 +43,25 @@ export default class Camera extends Component {
             motionDetection: true,
             allowMobileStreaming: true
         }
-          
+
         /*camControl.editCamSettings('http://192.168.100.4:8080/video', '80', 'Admin', '12345', camSettings, function (err) {
             if (err) throw err;
         });*/
-        
+
     }
 
     render() {
 
 
         return (
-            <div style={{ width: '100%', height: '90%', display: 'flex', alignItems: 'center' }}>
-                <img style={{ margin: 'auto', background: 'hsl(0, 0%, 25%)', WebkitUserSelect: 'none', height: "80%", width: "50%" }} src={"https://192.168.100.4:8080/video"}  />
+            <>
+                <Layout>
+                    <div style={{ width: '100%', height: '90%', display: 'flex', alignItems: 'center', marginTop:"20px" }}>
+                <img style={{ margin: 'auto', background: 'hsl(0, 0%, 25%)', WebkitUserSelect: 'none', height: "80%", width: "50%" }} src={"http://192.168.1.2:8080/video"} />
                 {/*<input type="submit" value="Probar" />*/}
-            </div>
+                    </div>
+                </Layout>
+                </>
         );
     }
 }
-

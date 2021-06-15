@@ -4,10 +4,20 @@ import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { Card, InputGroup, Form, Col } from 'react-bootstrap';
 import './Registro.css'
+import { LoginService } from "../../firebase/login"
+import { useHistory } from "react-router-dom";
+const funcionesService = new LoginService();
 function Registro() {
 
     const [validated, setValidated] = useState(false);
-
+    const [name, setName] = useState("");
+    const [apellido, setApellido] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [contrasena, setContrasena] = useState("");
+    const [funcionesFirebase, setFuncionesListFirebase] = useState("");
+    const [estado, setEstado] = useState(false);
+    let history = useHistory();
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -19,38 +29,78 @@ function Registro() {
        
     };
     function message() {
-        alert('Usuario creado');
+        console.log(name + " " + apellido + " " + username + " " + email + " " + contrasena)
+        //alert('Usuario creado');
     }
+
+
+    const functionRegister = async () => {
+        console.log(name + " " + apellido + " " + username + " " + email + " " + contrasena)
+        await funcionesService.adduser(name, apellido, username, email, contrasena).then((lista) => {
+            console.log("probando funci")
+            console.log(lista)
+            if (lista == true) {
+                setEstado(true)
+                console.log("usuario agregado correctamente")
+                console.log(estado)
+            } else {
+                setEstado(false)
+                console.log("usuario no se agrego")
+                setFuncionesListFirebase(lista)
+                
+            }
+
+
+        }).catch((error) => {
+            console.log(error)
+        });
+
+        console.log(funcionesFirebase)
+        return
+    }
+
+    const signInFunction = () => {
+        // Now in the sign in callback
+
+        history.push("/home");
+
+
+    }
+
     return (
 
         <div className='card1' >
             <Card className='card'>
-                <div >
+                <div style={{margin:"15px"}}>
                     <h1 className='h1'>Registro</h1>
                     <Form noValidate validated={validated} onClick={handleSubmit}>
                         <Form.Row>
                             <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                <Form.Label>Nombre</Form.Label>
+                                <Form.Label style={{ color: "#000" }} >Nombre</Form.Label>
                                 <Form.Control
                                     required
                                     type="text"
-                                    placeholder="First name"
+                                    placeholder="Nombre"
                                     defaultValue="Mark"
+                                    value={name}
+                                    onChange={event => setName(event.target.value)}
                                 />
                                 <Form.Control.Feedback>Bien!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                <Form.Label>Apellido</Form.Label>
+                                <Form.Label style={{ color: "#000" }}>Apellido</Form.Label>
                                 <Form.Control
                                     required
                                     type="text"
-                                    placeholder="Last name"
+                                    placeholder="Apellido"
                                     defaultValue="Otto"
+                                    value={apellido}
+                                    onChange={event => setApellido(event.target.value)}
                                 />
                                 <Form.Control.Feedback>Bien!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                <Form.Label>Usuario</Form.Label>
+                                <Form.Label style={{ color: "#000" }}>Usuario</Form.Label>
                                 <InputGroup hasValidation>
                                     <InputGroup.Prepend>
                                         <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
@@ -60,6 +110,8 @@ function Registro() {
                                         placeholder="Username"
                                         aria-describedby="inputGroupPrepend"
                                         required
+                                        value={username}
+                                        onChange={event => setUsername(event.target.value)}
                                     />
                                     <Form.Control.Feedback type="invalid">
                                         Elija su nombre de usuario.
@@ -68,15 +120,10 @@ function Registro() {
                             </Form.Group>
                         </Form.Row>
                       
-
-
-
-
-
-
                             <Form.Group controlId="validationCustom03">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Email" required />
+                            <Form.Label style={{ color: "#000" }}>Email</Form.Label>
+                            <Form.Control type="email" placeholder="Email" required value={email}
+                                onChange={event => setEmail(event.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
                                     Ingrese un email valido.
                                 </Form.Control.Feedback>
@@ -85,8 +132,9 @@ function Registro() {
                             
                         
                         <Form.Group>
-                            <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type="password" placeholder="Contraseña" required />
+                            <Form.Label style={{ color: "#000" }} >Contraseña</Form.Label>
+                            <Form.Control type="password" placeholder="Contraseña" required value={contrasena}
+                                onChange={event => setContrasena(event.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Ingresar contraseña.
                                 </Form.Control.Feedback>
@@ -94,10 +142,10 @@ function Registro() {
                         <div className="buttons">
                             <div className="but">
 
-                                <Button variant="contained" color="primary" component={Link} to="/" >Cancelar</Button>
+                                <Button variant="contained" style={{ backgroundColor: "#e32b24", color: "#fff" }} component={Link} to="/" >Cancelar</Button>
 
                             </div>
-                            <Button variant="contained" type="submit" color="green" onClick={message} component={Link} to="/">Guardar</Button>
+                            <Button variant="contained" type="submit" style={{ backgroundColor: "#5FA4B5", color: "#fff" }} onClick={() => { functionRegister() }} component={Link} to="/">Guardar</Button>
 
 
                         </div>

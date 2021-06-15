@@ -2,10 +2,12 @@
 import { Layout } from '../Layout';
 function Categoria() {
     return (
-        
-        <div>
+
+        <div className="body">
             <Layout>
-                <h1>Categoria</h1>
+                <div className="body">
+                    <h1>Registro nuevas personas no familiares</h1>
+                </div>
                 </Layout>
         </div>
 

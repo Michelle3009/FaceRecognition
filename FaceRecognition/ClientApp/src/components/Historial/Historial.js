@@ -1,17 +1,62 @@
-﻿import React, { useState} from 'react';
+﻿import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import { Card, Text, Tabs, Tab, Image } from 'react-bootstrap';
-import { Container, Row, Col} from 'reactstrap';
+import { Card, Tabs, Tab, Image} from 'react-bootstrap';
 import './Historial.css'
+import { HistorialService } from "../../firebase/historial"
 import { Layout } from '../Layout';
+
+
+const funcionesService = new HistorialService();
 export default function Historial() {
+    const [funcionesFirebase, setFuncionesListFirebase] = useState("");
+    const [funcionesFirebase2, setFuncionesListFirebase2] = useState("");
+    const [state, setState] = useState(false);
+    const [state2, setState2] = useState(false);
+
+   useEffect(() => {
+        // Actualiza el título del documento usando la API del navegador
+      
+       async function Data() {
+       await funcionesService.getSearchResult().then((lista) => {
+            console.log("datos")
+
+           console.log(lista)
+           
+           setFuncionesListFirebase(lista)
+           setState(true)
+           console.log(state)
+       }).catch((error) => {
+           console.log(error)
+       });
+
+       console.log(funcionesFirebase)
+      
+       }
+       Data()
+   }, []);
+
+    useEffect(() => {
+        // Actualiza el título del documento usando la API del navegador
+
+        async function Data2() {
+            await funcionesService.getSearchResult2().then((lista) => {
+                console.log("datos")
+
+                console.log(lista)
+
+                setFuncionesListFirebase2(lista)
+                setState2(true)
+                console.log(state2)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+            console.log(funcionesFirebase2)
+
+        }
+        Data2()
+    }, []);
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,106 +67,75 @@ const useStyles = makeStyles((theme) => ({
     inline: {
         display: 'inline',
     },
-}));
-
-    const histroryInfo=[{
-        id: "1",
-        texto: "hola, hoy ingreso Sobeida 3 veces",
-        imagen:"https://www.petclic.es/wikipets/wp-content/uploads/sites/default/files/library/dalmata_-_razas_de_perro.jpg"
-    }, {
-            id: "2",
-            texto: "hola, hoy ingreso Carlos 3 veces"
-        }, {
-            id: "3",
-            texto: "hola, hoy ingreso Jean Carlos 3 veces"
-        }];
-    const histroryInfo2 = [{
-        id: "1",
-        texto: "hola, hoy ingreso este desconocido 3 veces",
-        imagen:"https://www.petclic.es/wikipets/wp-content/uploads/sites/default/files/library/dalmata_-_razas_de_perro.jpg"
-    }, {
-        id: "2",
-            texto: "hola, hoy ingreso este desconocido  2 veces"
-    }, {
-        id: "3",
-            texto: "hola, hoy ingreso este desconocido  1 veces"
-    }];
-
-
+}));   
 const renderCard = (card, index) => {
-
     return (
         <>
-            
-        <Card key={index}>
+            <Card key={index} style={{ backgroundColor: "#fff", dispay:"flex", justifyContent: "center" }} ClassName="box">
            
             
-            <Card.Body>
-                <Card.Title>{card.texto}</Card.Title>
+                <Card.Body >
+                    <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}> 
+                <Card.Title>{card.nombre}</Card.Title>
                 <div className="divc">
-                    <Image src={card.imagen} roundedCircle />
+                        <Image src={card.imagen} rounded  width="200" height="200" />
                 </div>
                 <Card.Text>
-                    {card.texto}
-                </Card.Text>
+                        {card.descripcion}
+                 </Card.Text>
+                </div>
             </Card.Body>
-                </Card>
+            </Card>
+        
            </>
-
     );
 };
-
     const renderCardDesconocido = (card, index) => {
-
         return (
-
-            <Card key={index} ClassName="box">
+            <>
+                <Card key={index} style={{ backgroundColor: "#fff", justify:"center"}} ClassName="box">
                
-                <Card.Body>
-                    <Card.Title>{card.texto}</Card.Title>
+                    <Card.Body>
+                        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}> 
+                    <Card.Title>{card.nombre}</Card.Title>
                     <div className="divc">
-                        <Image src={card.imagen} roundedCircle />
+                            <Image src={card.imagen} rounded width="200" height="200" />
                     </div>
                     <Card.Text>
-                        {card.texto}
-                    </Card.Text>
+                            {card.descripcion}
+                            </Card.Text>
+                        </div>
                 </Card.Body>
             </Card>
-
+                </>
         );
     };
 
     function ControlledTabs() {
         const [key, setKey] = useState('home');
-
         return (
             <Tabs
                 id="controlled-tab-example"
                 activeKey={key}
-                onSelect={(k) => setKey(k)}
-            >
+                onSelect={(k) => setKey(k)}>
                 <Tab eventKey="home" title="Miembros">
-                    
-                    {histroryInfo.map(renderCard)}
+                    {state ? <div class="ite" >
+                        {funcionesFirebase.map(renderCard)}
+                    </div> : "no hay datos"}
                 </Tab>
                 <Tab eventKey="profile" title="Desconocidos">
-                  
-                    {histroryInfo2.map(renderCardDesconocido)}
+                    {state2 ? <div class="ite" >
+                        {funcionesFirebase2.map(renderCardDesconocido)}
+                    </div> : "no hay datos"}
                 </Tab>
-                
             </Tabs>
         );
     }
-
-
-
-
     return (
         <>
             <Layout>
-            <ControlledTabs />
+                    <ControlledTabs />
                 </Layout>
-
         </>
     );
 }

@@ -1,17 +1,21 @@
-﻿.card {
+﻿@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+.card {
     width: 28rem;
-
+    background-color: #a9d6e8;
 }
-.card1{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:150px;
-}
-.h1 {
+.card1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 150px;
+    
+}
+.h1 {
+    font-family: 'Monoton', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:50px;
 }
 .input {
     display: flex;
@@ -27,6 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom:30px
 }
 .but{
     margin:10px;
@@ -37,4 +42,9 @@
 .registrob {
     background-color: #5FA4B5;
     color:#ffffff;
+}
+body {
+    background-color: aliceblue;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }

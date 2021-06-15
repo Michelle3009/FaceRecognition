@@ -78,7 +78,7 @@ body {
 
 .headerDiv {
     position: relative;
-    background-color: #619FCC;
+    background-color: dodgerblue;
     display: flex;
     align-items: center;
     border-radius: 10px;

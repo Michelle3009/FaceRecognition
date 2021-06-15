@@ -2,7 +2,18 @@
     margin-left: 16rem !important;
 }
 .divc{
-    width:200;
-    height:200;
+    width:200px;
+    height:200px;
 
+}
+.ite {
+justify-content:center;
+display:flex;
+flex-direction:column;
+padding-left:150px;
+}
+.titulo {
+    display: flex;
+    justify-content:center;
+    align-content:center;
 }

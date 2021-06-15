@@ -3,7 +3,7 @@
 export function getMembersService() {
     return new Promise(async (resolve, reject) => {
         await firebase.db.collection('miembros').get().then((document) => {
-            var members =[]
+            var members = []
             document.docs.forEach((doc) => {
                 var data = doc.data()
                 data['id'] = doc.id
@@ -15,7 +15,7 @@ export function getMembersService() {
         })
     })
 }
-export function createMember(name, family, images){
+export function createMember(name, family, images) {
     return new Promise(async (resolve, reject) => {
         var Ref = firebase.db.collection("miembros")
         await Ref.add({
@@ -27,9 +27,9 @@ export function createMember(name, family, images){
         })
     })
 }
-export function uploadImagesMembers(filePaths, idMember){
+export function uploadImagesMembers(filePaths, idMember) {
     return new Promise(async (resolve, reject) => {
-        if (filePaths.length <= 3) {
+        if (filePaths.length >= 7) {
             Promise.all(
                 filePaths.map((item, index) => {
                     return new Promise(async (resolve, reject) => {
@@ -40,9 +40,9 @@ export function uploadImagesMembers(filePaths, idMember){
                         let uploadTask = ref.put(blob);
                         uploadTask.then(() => {
                             uploadTask.snapshot.ref.getDownloadURL()
-                            .then((url) => {
-                               resolve(url);
-                            });
+                                .then((url) => {
+                                    resolve(url);
+                                });
                         });
                     });
                 })

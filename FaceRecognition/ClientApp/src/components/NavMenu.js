@@ -43,18 +43,16 @@ export class NavMenu extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                 {this.state.leftBar && <LeftBar stateLeft={this.closeLeftBar} />}
-                <header>
-                    <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+                <header style={{ backgroundColor: "#3C678E" }}>
+                    <Navbar  className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
                         <Container>
-                            <NavbarBrand className="navBarBrand" tag={Link} to="#">
-                                <Button color="link" size="lg" onClick={() => this.openLeftBar()}><FontAwesomeIcon icon={faBars} /></Button>Administrador monitoreo </NavbarBrand>
+                            <NavbarBrand className="navBarBrand" style={{ color: "#fff" }} tag={Link} to="#">
+                                <Button color="link" size="lg" onClick={() => this.openLeftBar()}><FontAwesomeIcon icon={faBars} style={{ color:"#fff" }} /></Button>Administrador monitoreo </NavbarBrand>
                             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                                <ul className="navbar-nav flex-grow">
-                                    <NavItem> <NavLink tag={Link} className="text-dark" to="#">Cuenta</NavLink> </NavItem>
-                                </ul>
+                                
                             </Collapse>
                         </Container>
                     </Navbar>
@@ -95,11 +93,14 @@ export class LeftBar extends Component {
     list(anchor) {
 
         return (
+            <>
+                
             <div className="bar"
                 role="presentation"
                 onClick={this.toggleDrawer(false)}
-                onKeyDown={this.toggleDrawer(false)}>
-                <List className="items">
+                    onKeyDown={this.toggleDrawer(false)}>
+                    <div style={{ marginTop: "20px" }}>
+                    <List className="items">
                     {SidebarData.map((item, index) => (
                         <ListItem button key={index} className={item.cName} >
                             <Link to={item.path}>
@@ -109,10 +110,15 @@ export class LeftBar extends Component {
                             </Link>
                         </ListItem>
                     ))}
-                </List>
+                        </List>
+                    </div>
                 {/*<Divider />*/}
-            </div>)
+                </div>
+                </>
+        )
+           
     }
+
     render() {
         return (
             <div>

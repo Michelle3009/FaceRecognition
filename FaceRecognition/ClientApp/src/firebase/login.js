@@ -1,50 +1,111 @@
 ﻿import firebase from "./conf";
 
-var idDoc = "";
-export function Login(filePath, type) {
+export class Login {
+    Login(ID, username, password) {
+        this.ID = ID;
+        this.userID = username;
+        this.password = password;
+    }
+}
 
-    return new Promise(async (resolve, reject) => {
-        var length = 0;
-        await getLengthImages().then((res) => {
-            length = res
-        })
-        const response = await fetch(filePath);
-        const blob = await response.blob();
-        let ref = firebase.storage.ref().child(`camera/photo${length++}.${type}`);
-        let uploadTask = ref.put(blob);
-        uploadTask.then(() => {
-            uploadTask.snapshot.ref.getDownloadURL()
-                .then((url) => {
-                    setLenghtImages(length++)
-                    resolve(url);
+export class LoginService {
+
+    constructor() {
+        this.lastVisible = null;
+    }
+
+    logCities = async () => {
+        let citiesRef = firebase.db.collection("usuarios");
+        let allCities = await citiesRef.get();
+        for (const doc of allCities.docs) {
+            console.log(doc.id, '=>', doc.data());
+        }
+    }
+    getSearchResult(user, password) {
+        return new Promise(async (resolve, reject) => {
+            const val = false;
+            const solicitudes = [];
+            var collectionRef = firebase.db.collection("usuarios");
+            let allCities = await collectionRef.get();
+            if (user !== '') {
+                collectionRef = collectionRef.where('userID', '==', user)
+                collectionRef = collectionRef.where("password", "==", password)
+                console.log(user, password)
+                collectionRef = await collectionRef.get().then((documentSnapshots) => {
+
+                    documentSnapshots.docs.forEach((doc) => {
+
+                        const { userID, password } = doc.data()
+                        let ids = doc.id;
+                        solicitudes.push({
+                            ids,
+                            userID,
+                            password
+                        });
+
+                    });
+
+                    resolve(solicitudes)
+
+                }).catch((error) => {
+
+                    console.log(error);
+                    reject(error);
+
                 });
-        });
-    });
-}
-function setLenghtImages(num) {
-    var docRef = firebase.db.collection("ImagesLenght")
-    docRef.doc(idDoc).update({ length: num }).then(() => {
-        console.log("Se actualizó correctamente");
 
-    }).catch((error) => {
-        console.log(error)
-    })
 
-}
-function getLengthImages() {
-    return new Promise(async (resolve, reject) => {
-        var docRef = firebase.db.collection("ImagesLenght")
-        await docRef.get().then((document) => {
-            document.docs.forEach((doc) => {
-                idDoc = doc.id;
-                resolve(doc.data().length)
-            })
+
+
+
+
+
+
+
+            }
+
 
         }).catch((error) => {
-            console.log(error)
-            reject(error)
-        })
 
-    })
+            console.log(error);
+
+
+        });
+    }
+        adduser(name,apellido,username,email,contrasena) {
+            return new Promise(async (resolve, reject) => {
+                const val = false;
+                const solicitudes = [];
+                var collectionRef = firebase.db.collection("usuarios");
+                let allCities = await collectionRef.get();
+                if (name !== '') {
+                    const user = { name: name, apellido: apellido,userID:username, email: email, password: contrasena }
+                    await firebase.db.collection("usuarios").add(user).then(() => {
+
+                       
+
+                        resolve(true)
+
+                    }).catch((error) => {
+
+                        console.log(error);
+                        reject(error);
+
+                    });
+
+                }
+
+
+            }).catch((error) => {
+
+                console.log(error);
+
+
+            });
+
+
+
+    }
+
+
 }
-export default uploadImage
