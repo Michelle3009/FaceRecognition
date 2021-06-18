@@ -29,7 +29,7 @@ export function createMember(name, family, images) {
 }
 export function uploadImagesMembers(filePaths, idMember) {
     return new Promise(async (resolve, reject) => {
-        if (filePaths.length >= 7) {
+        if (filePaths.length >= 5) {
             Promise.all(
                 filePaths.map((item, index) => {
                     return new Promise(async (resolve, reject) => {

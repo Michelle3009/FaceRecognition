@@ -5,11 +5,11 @@ import Modal from '@material-ui/core/Modal';
 import { getMembersService, uploadImagesMembers } from '../../firebase/members.service'
 import { Alert } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
+/*import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarBorderIcon from '@material-ui/icons/StarBorder'*/
 import derecha from '../../assets/derecha.png';
 import izquierda from '../../assets/izquierda.png';
 import arriba from '../../assets/arriba.png';
@@ -19,6 +19,8 @@ import inclinaIzq from '../../assets/inclinaIzq.png';
 import frente from '../../assets/frente.png';
 import { createMember } from '../../firebase/members.service'
 import { Layout } from '../Layout';
+
+
 export default function Miembros() {
 
     const [name, setName] = useState("");
@@ -29,17 +31,17 @@ export default function Miembros() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        
-    
 
-    
-    Data()
+
+
+
+        Data()
     }, []);
     const Data = async () => {
         await getMembersService().then((result) => {
             console.log(result)
             setData(result)
-            
+
         }).catch((error) => {
             console.log(error)
         })
@@ -66,7 +68,7 @@ export default function Miembros() {
     }
     const Cambiar = () => {
         setEstado(false)
-      
+
     }
     const handleClose = () => {
         setOpen(false)
@@ -77,47 +79,47 @@ export default function Miembros() {
     return (
         <>
             <Layout>
-                {estado ? < Alert variant={'success'}> Miembro correctamente creado</Alert> : ""} 
-        <div className="containerDivMiembros">
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
+                {estado ? < Alert variant={'success'}> Miembro correctamente creado</Alert> : ""}
+                <div className="containerDivMiembros">
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description">
                         <ModalContainer estado={Alerts} refresh={Refresh} close={handleClose}></ModalContainer>
 
-            </Modal>
-            <div className="containerMiembros">
-                <div className="headerDiv">
-                    <label className="title">Miembros</label>
-                    <button className="create" onClick={openModal}>+ Crear</button>
-                </div>
-                {data.map(
-                    (element) => {
-                        return (
-                            <div className={`divMiembros`} key={element.id} id={element.id} onClick={(e) => changeName(e, element.nombre, element.imagenes)}>
-                                <Icon className="fas fa-user" color="primary" />
-                                <div className="miembro">
-                                    <p className="nombre">{element.nombre}</p>
-                                    <p className="parentesco" >{element.parentesco}</p>
-                                </div>
-                            </div>)
+                    </Modal>
+                    <div className="containerMiembros">
+                        <div className="headerDiv">
+                            <label className="title">Miembros</label>
+                            <button className="create" onClick={openModal}>+ Crear</button>
+                        </div>
+                        {data.map(
+                            (element) => {
+                                return (
+                                    <div className={`divMiembros`} key={element.id} id={element.id} onClick={(e) => changeName(e, element.nombre, element.imagenes)}>
+                                        <Icon className="fas fa-user" color="primary" />
+                                        <div className="miembro">
+                                            <p className="nombre">{element.nombre}</p>
+                                            <p className="parentesco" >{element.parentesco}</p>
+                                        </div>
+                                    </div>)
 
-                    })}
-            </div>
-            <div className="containerInfo">
-                <div className="containerData">
-                    {name == "" ? <p> </p> : <div className="containerDataName"><p>{name}</p></div>}
-                    <div className="containerImage">
-                        {ListImages.map((image) => {
-                            return (<img src={image} key={image} height="200px" width="200px" style={{ margin: '10px 5px' }} />)
-                        })}
+                            })}
+                    </div>
+                    <div className="containerInfo">
+                        <div className="containerData">
+                            {name == "" ? <p> </p> : <div className="containerDataName"><p>{name}</p></div>}
+                            <div className="containerImage">
+                                {ListImages.map((image) => {
+                                    return (<img src={image} key={image} height="200px" width="200px" style={{ margin: '10px 5px' }} />)
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-                </div>
             </Layout>
-            </>
+        </>
 
     )
 }
@@ -125,16 +127,25 @@ export default function Miembros() {
 function ModalContainer(props) {
     console.log(props)
     const [images, setImages] = useState([])
+    const [imagesBackend, setImagesB] = useState([])
     const [name, setName] = useState('');
     const [family, setFamily] = useState('')
     const [openGuide, setOpenGuide] = useState(false)
     const [estados, setEstados] = useState(false);
+
     const getImage = (file) => {
-        console.log(file)
+        //console.log(file)
         const newImages = images.concat(file)
         console.log(newImages[0])
         setImages(newImages)
     }
+
+    const getImageUrl = (fileUrl) => {
+        //console.log(file)
+        const newImagesUrl = imagesBackend.concat(fileUrl)
+        setImagesB(newImagesUrl)
+    }
+
     const closeModal = () => {
         const { close } = props;
         close()
@@ -148,9 +159,8 @@ function ModalContainer(props) {
                 refresh()
                 const { estado } = props
                 estado(true)
+                endPoint()
                 closeModal()
-                
-             
 
             }).catch((error) => {
                 console.log(error)
@@ -160,6 +170,16 @@ function ModalContainer(props) {
             console.log(error)
         })
     };
+
+    const endPoint = () => {
+        fetch('http://localhost:7000/addFace', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+
+            body: JSON.stringify({ name: name, list: imagesBackend })
+        }).then(async (result) => { var data = await result.json(); console.log(data) }).catch(console.log)
+    }
+
     const handleChangeFamily = (e) => {
         setFamily(e.target.value)
     }
@@ -175,7 +195,7 @@ function ModalContainer(props) {
     }
     return (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-           
+
             <div style={{
                 display: 'flex', background: 'white', borderRadius: '20px', justifyContent: 'center',
                 alignItems: 'center', flexDirection: 'column', padding: '20px', position: 'relative'
@@ -188,7 +208,7 @@ function ModalContainer(props) {
                     <ModalGuide close={handleClose}></ModalGuide>
                 </Modal>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    
+
                     <input placeholder="Nombre" onChange={handleChangeName} style={{ marginBottom: '10px' }} />
                     <input placeholder="Parentesco" onChange={handleChangeFamily} />
                     <div style={{ flexDirection: 'column', width: '400px', borderTopColor: 'gray', borderTopWidth: '1px', borderTopStyle: 'solid', marginTop: '20px' }}>
@@ -207,12 +227,12 @@ function ModalContainer(props) {
 
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'row', position: 'relative', width: '100%', alignItems: 'center' }}>
-                            <p style={{ fontSize: '15px', color: 'darkgray', alignSelf: 'center' }}>*Debe añadir 7 imagenes</p>
+                            <p style={{ fontSize: '15px', color: 'darkgray', alignSelf: 'center' }}>*Debe añadir 5 imagenes</p>
                             <button style={{
                                 display: 'flex', position: 'absolute', right: '10px', borderStyle: 'none', background: 'white',
                                 color: 'darkblue', borderRadius: '10px', fontSize: '20px', textDecoration: 'underline'
                             }} onClick={() => openModalGuide()}>Guía </button></div>
-                        <SelectImage getImage={getImage}></SelectImage>
+                        <SelectImage getImageUrl={getImageUrl} getImage={getImage}></SelectImage>
                     </div>
                 </div>
                 <div style={{ marginTop: '10px' }}>
@@ -232,8 +252,6 @@ function ModalGuide(props) {
         close()
     }
     const list = [{ position: 'De frente', image: frente },
-    { position: 'Lado derecha', image: derecha },
-    { position: 'Lado Izquierdo', image: izquierda },
     { position: 'Abajo', image: abajo },
     { position: 'Arriba', image: arriba },
     { position: 'Inclinada a la derecha', image: inclinaDer },
@@ -247,7 +265,7 @@ function ModalGuide(props) {
                 alignItems: 'center', flexDirection: 'column', padding: '20px', position: 'relative', width: '500px'
             }}>
                 <strong style={{ marginBottom: '10px' }}>Guía sobre las fotos a subir</strong>
-                <p>Debe añadir 7 imágenes diferentes de su cara, cómo se muestra en las imágenes</p>
+                <p>Debe añadir 5 imágenes diferentes de su cara, cómo se muestra en las imágenes</p>
 
                 <div style={{ display: 'flex', flexDirection: 'row', height: '180px', overflowY: 'auto', alignItems: 'center', width: '400px' }}>
                     {list.length != 0 ? list.map((item) => {
@@ -275,10 +293,28 @@ function SelectImage(props) {
     const fileSelect = () => {
         document.getElementById('inputSelect').click()
     }
-    const select = (event) => {
+    const select = async (event) => {
+        const reader = new FileReader();
+        console.log(event.target.files.length)
+      
         const fileUrl = URL.createObjectURL(event.target.files[0])
         const { getImage } = props
         getImage(fileUrl)
+
+
+        reader.onload = function (e) {
+            const { getImageUrl } = props
+            getImageUrl(e.target.result)
+        };
+
+        //console.log(reader.readAsText(event.target.files[0]))
+
+        if (event.target.files[0]) {
+            console.log(reader.readAsDataURL(event.target.files[0]));
+        }
+
+
+
     }
     return (
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%', borderBottomColor: 'gray', borderBottomWidth: '1px', borderBottomStyle: 'solid', paddingBottom: '10px' }}>

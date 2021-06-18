@@ -57,7 +57,7 @@ export default class Camera extends Component {
             <>
                 <Layout>
                     <div style={{ width: '100%', height: '90%', display: 'flex', alignItems: 'center', marginTop:"20px" }}>
-                <img style={{ margin: 'auto', background: 'hsl(0, 0%, 25%)', WebkitUserSelect: 'none', height: "80%", width: "50%" }} src={"http://192.168.1.2:8080/video"} />
+                <img style={{ margin: 'auto', background: 'hsl(0, 0%, 25%)', WebkitUserSelect: 'none', height: "80%", width: "50%" }} src={"http://192.168.1.3:8080/video"} />
                 {/*<input type="submit" value="Probar" />*/}
                     </div>
                 </Layout>
